@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Metas -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoteling: Hotel Booking</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['"Poppins"', 'sans-serif'],
+            'heading': ['"Montserrat"', 'sans-serif']
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-svh flex flex-col">
+  <!-- Header -->
+  <header class="py-4">
+    <nav class="container flex justify-between items-center mx-auto">
+      <div class="text-center">
+        <a href="index.html">
+          <h1 class="font-heading font-bold text-2xl leading-4">Hoteling</h1>
+          <p class="font-heading text-sm tracking-[.035em]">Hotel Booking</p>
+        </a>
+      </div>
+      <ul class="grid grid-flow-col">
+        <li class="text-center js-wider"><a href="produk.html" class="hover:font-bold">Produk</a></li>
+        <li class="text-center js-wider"><a href="daftar-harga.html" class="hover:font-bold">Daftar Harga</a></li>
+        <li class="text-center js-wider"><a href="tentang-kami.html" class="hover:font-bold">Tentang Kami</a></li>
+        <li class="text-center js-wider"><a href="pesan-kamar.html" class="hover:font-bold">Pesan Kamar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="grow">
+    <section class="py-20">
+      <div class="container mx-auto">
+        <h2 class="font-heading text-2xl text-center">Tentang Kami</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+          <img src="https://images.unsplash.com/photo-1699979380299-290f8124262a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tentang Kami" class="w-full h-96 object-cover object-center">
+          <div class="text-justify text-lg">
+            <p class="mb-4">
+              Hoteling adalah platform booking hotel yang menyediakan berbagai macam pilihan hotel di seluruh dunia.
+              Kami menyediakan berbagai macam pilihan hotel.
+            </p>
+            <p class="mb-4">
+              Hoteling didirikan pada tahun 1924 oleh John Doe.
+              John Doe adalah seorang pengusaha muda yang memiliki visi untuk memudahkan masyarakat dalam mencari hotel.
+            </p>
+            <p class="mb-4">
+              Hoteling memiliki tim yang solid dan berpengalaman dalam bidangnya masing-masing.
+              Tim kami selalu berusaha memberikan pelayanan terbaik untuk pelanggan kami.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-gray-800 text-white">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Hoteling. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Script JS -->
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>

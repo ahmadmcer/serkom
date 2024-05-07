@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Metas -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoteling: Hotel Booking</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['"Poppins"', 'sans-serif'],
+            'heading': ['"Montserrat"', 'sans-serif']
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-svh">
+  <!-- Header -->
+  <header class="py-4">
+    <nav class="container flex justify-between items-center mx-auto">
+      <div class="text-center">
+        <a href="index.html">
+          <h1 class="font-heading font-bold text-2xl leading-4">Hoteling</h1>
+          <p class="font-heading text-sm tracking-[.035em]">Hotel Booking</p>
+        </a>
+      </div>
+      <ul class="grid grid-flow-col">
+        <li class="text-center js-wider"><a href="produk.html" class="hover:font-bold">Produk</a></li>
+        <li class="text-center js-wider"><a href="daftar-harga.html" class="hover:font-bold">Daftar Harga</a></li>
+        <li class="text-center js-wider"><a href="tentang-kami.html" class="hover:font-bold">Tentang Kami</a></li>
+        <li class="text-center js-wider"><a href="pesan-kamar.html" class="hover:font-bold">Pesan Kamar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="grow">
+    <section class="py-20">
+      <div class="container mx-auto">
+        <h2 class="font-heading text-2xl text-center">Pesan Kamar</h2>
+        <p class="text-center mt-2">Silahkan pilih kamar yang ingin Anda pesan</p>
+        <form action="./assets/php/input-data.php" method="get" class="w-full max-w-2xl mx-auto">
+          <label for="nama" class="block mt-4">Nama Pemesan</label>
+          <input type="text" name="nama" id="nama" class="w-full p-2 border">
+          <label for="jenis-kelamin" class="block mt-4">Jenis Kelamin</label>
+          <div id="jenis-kelamin" class="grid grid-flow-col">
+            <div>
+              <input type="radio" name="jenis-kelamin" id="laki-laki" value="laki-laki">
+              <label for="laki-laki">Laki-laki</label>
+            </div>
+            <div>
+              <input type="radio" name="jenis-kelamin" id="perempuan" value="perempuan">
+              <label for="perempuan">Perempuan</label>
+            </div>
+          </div>
+          <label for="nomor-identitas" class="block mt-4">Nomor Identitas</label>
+          <input type="text" name="nomor-identitas" id="nomor-identitas" class="w-full p-2 border" pattern="[0-9]{16}" placeholder="16 digit angka" required>
+          <small id="warning-text" class="text-red-500 hidden">Isian salah! Tolong masukkan 16 digit angka!</small>
+          <div class="grid grid-flow-col gap-4">
+            <div>
+              <label for="kamar" class="block mt-4">Tipe Kamar</label>
+              <select name="kamar" id="kamar" class="w-full p-2 border" onchange="updateHarga()">
+                <option value="" selected disabled>Pilih Tipe Kamar</option>
+                <option value="standar">Kamar Standar</option>
+                <option value="deluxe">Kamar Deluxe</option>
+                <option value="family">Kamar Family</option>
+              </select>
+            </div>
+            <div>
+              <label for="harga" class="block mt-4">Harga</label>
+              <input type="text" name="harga" id="harga" class="w-full p-2 border" readonly>
+            </div>
+          </div>
+          <div class="grid grid-flow-col gap-4">
+            <div class="col-span-4">
+              <label for="tanggal" class="block mt-4">Tanggal Check-in</label>
+              <input type="date" name="tanggal" id="tanggal" class="w-full p-2 border">
+            </div>
+            <div>
+              <label for="durasi" class="block mt-4">Durasi</label>
+              <div class="flex gap-4 items-center">
+                <input type="number" name="durasi" id="durasi" class="w-full p-2 border">
+                <div class="text-center">hari</div>
+              </div>
+            </div>
+          </div>
+          <label for="termasuk-breakfast" class="block mt-4">Termasuk Breakfast</label>
+          <div id="termasuk-breakfast">
+            <input type="checkbox" name="breakfast" id="breakfast">
+            <label for="breakfast">YA</label>
+          </div>
+          <input type="hidden" name="diskon-input" id="diskon-input">
+          <input type="hidden" name="total-harga-input" id="total-harga-input">
+          <div class="flex flex-row justify-between items-end font-bold mt-16">
+            <p>Total Harga: </p>
+            <div>
+              <p id="diskon" class="text-right font-normal text-xs"><span id="diskon-harga" class="text-gray-400 line-through"></span> <span id="diskon-persen" class="text-green-500 font-semibold"></span></p>
+              <p id="total-harga">Rp. 0</p>
+            </div>
+          </div>
+          <div class="flex flex-row gap-4 mt-4">
+            <button type="button" id="hitung" class="block w-full p-2 bg-green-700 text-white border-4 border-green-700 hover:bg-white hover:text-green-700 hover:font-bold" onclick="hitungTotalHarga()">Hitung Total Harga</button>
+            <button type="submit" id="pesan" class="block w-full p-2 bg-blue-700 text-white border-4 border-blue-700 hover:bg-white hover:text-blue-700 hover:font-bold">Pesan Sekarang</button>
+            <button type="button" id="reset" class="block w-full p-2 bg-red-700 text-white border-4 border-red-700 hover:bg-white hover:text-red-700 hover:font-bold">Batal</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-gray-800 text-white">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Hoteling. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Script JS -->
+  <script src="./assets/js/script.js"></script>
+  <script>
+    function hitungTotalHarga() {
+      // Ambil elemen yang dibutuhkan
+      const totalHargaElement = document.getElementById("total-harga");
+      const totalHargaInput = document.getElementById("total-harga-input");
+      const diskonElement = document.getElementById("diskon");
+      const diskonInput = document.getElementById("diskon-input");
+      const diskonHargaElement = document.getElementById("diskon-harga");
+      const diskonPersenElement = document.getElementById("diskon-persen");
+      
+      // Ambil nilai dari input
+      let harga = document.getElementById("harga").value;
+      let durasi = document.getElementById("durasi").value;
+      let breakfast = document.getElementById("breakfast").checked;
+      let diskon = 0;
+      let total = 0;
+      
+      // Hapus Rp. dan ubah ke integer
+      total = parseInt(harga.replace("Rp. ", "").replaceAll(".", "")) * parseInt(durasi);
+      
+      // Tambah diskon jika durasi lebih dari 3 hari
+      if (parseInt(durasi) > 3) {
+        diskon = 0.1;
+        diskonElement.classList.remove("hidden");
+      } else {
+        diskon = 0;
+        diskonElement.classList.add("hidden");
+      }
+
+      // Tampilkan diskon
+      diskonInput.value = diskon * 100;
+      diskonHargaElement.textContent = breakfast ? "Rp. " + (total + 80000).toLocaleString() : "Rp. " + total.toLocaleString();
+      diskonPersenElement.textContent = diskon * 100 + "%";
+
+      // Hitung total harga
+      total = breakfast ? total - (total * diskon) + 80000 : total - (total * diskon);
+      totalHargaInput.value = total;
+
+      // Tampilkan total harga
+      totalHargaElement.textContent = "Rp. " + total.toLocaleString();
+    }
+
+    function updateHarga() {
+      let kamar = document.getElementById("kamar").value;
+      let hargaInput = document.getElementById("harga");
+      
+      if (kamar === "standar") {
+      hargaInput.value = "Rp. 500.000";
+      } else if (kamar === "deluxe") {
+      hargaInput.value = "Rp. 800.000";
+      } else if (kamar === "family") {
+      hargaInput.value = "Rp. 1.200.000";
+      }
+    }
+
+    document.getElementById('nomor-identitas').addEventListener('input', function() {
+      if (this.validity.patternMismatch) {
+        document.getElementById('warning-text').classList.remove('hidden');
+        document.getElementById('nomor-identitas').classList.add('outline-red-500');
+      } else {
+        document.getElementById('warning-text').classList.add('hidden');
+        document.getElementById('nomor-identitas').classList.remove('outline-red-500');
+      }
+    });
+  </script>
+</body>
+</html>

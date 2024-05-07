@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Metas -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoteling: Hotel Booking</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['"Poppins"', 'sans-serif'],
+            'heading': ['"Montserrat"', 'sans-serif']
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-svh flex flex-col">
+  <!-- Header -->
+  <header class="py-4">
+    <nav class="container flex justify-between items-center mx-auto">
+      <div class="text-center">
+        <a href="index.html">
+          <h1 class="font-heading font-bold text-2xl leading-4">Hoteling</h1>
+          <p class="font-heading text-sm tracking-[.035em]">Hotel Booking</p>
+        </a>
+      </div>
+      <ul class="grid grid-flow-col">
+        <li class="text-center js-wider"><a href="produk.html" class="hover:font-bold">Produk</a></li>
+        <li class="text-center js-wider"><a href="daftar-harga.html" class="hover:font-bold">Daftar Harga</a></li>
+        <li class="text-center js-wider"><a href="tentang-kami.html" class="hover:font-bold">Tentang Kami</a></li>
+        <li class="text-center js-wider"><a href="pesan-kamar.html" class="hover:font-bold">Pesan Kamar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="grow">
+    <section class="py-20">
+      <div class="container mx-auto">
+        <h2 class="font-heading text-2xl text-center">Daftar Harga</h2>
+        <p class="text-center mt-2">Berikut adalah daftar harga kamar kami</p>
+        <table class="w-full max-w-4xl mt-8 mx-auto">
+          <thead>
+            <tr>
+              <th class="bg-gray-100 p-2">Kamar</th>
+              <th class="bg-gray-100 p-2">Harga</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-2 border-b">Kamar Standar</td>
+              <td class="p-2 border-b">Rp 500.000/malam</td>
+            </tr>
+            <tr>
+              <td class="p-2 border-b">Kamar Deluxe</td>
+              <td class="p-2 border-b">Rp 800.000/malam</td>
+            </tr>
+            <tr>
+              <td class="p-2 border-b">Kamar Family</td>
+              <td class="p-2 border-b">Rp 1.200.000/malam</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-gray-800 text-white">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Hoteling. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Script JS -->
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
